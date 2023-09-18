@@ -54,7 +54,7 @@ function userById (userId) {
 }
 </script>
 
-<style scoped>
+<style>
 .post-list {
   margin-top: 20px;
 }
