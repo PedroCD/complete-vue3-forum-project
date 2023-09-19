@@ -33,7 +33,6 @@ const threadPosts = computed(() => {
 })
 
 const addPost = (eventData) => {
-  console.log(eventData)
   const post = {
     ...eventData.post,
     threadId: props.id

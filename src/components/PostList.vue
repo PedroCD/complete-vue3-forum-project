@@ -45,7 +45,6 @@ const props = defineProps({
 const users = ref(sourceData.users)
 
 function userById (userId) {
-  console.log(userId, users.value.find(u => u.id === userId))
   return users.value.find(u => u.id === userId)
 }
 
