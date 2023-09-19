@@ -3,16 +3,7 @@
     <h1>{{ thread.title }}</h1>
 
     <post-list :posts="threadPosts" />
-    <div class="col-full">
-      <form @submit.prevent="addPost">
-        <div class="form-group">
-          <textarea v-model="newPostText" name="" id="" cols="30" rows="10" class="form-input" />
-        </div>
-        <div class="form-actions">
-          <button class="btn-blue">Submit post</button>
-        </div>
-      </form>
-    </div>
+    <post-editor @save="addPost"/>
   </div>
 </template>
 
@@ -20,10 +11,11 @@
 import sourceData from '@/data.json'
 import PostList from '@/components/PostList.vue'
 import { computed, ref, defineProps } from 'vue'
+import PostEditor from '@/components/PostEditor.vue'
 
 const threads = ref(sourceData.threads)
 const posts = ref(sourceData.posts)
-let newPostText = ref('')
+const newPostText = ref('')
 
 const props = defineProps({
   id: {
@@ -40,18 +32,15 @@ const threadPosts = computed(() => {
   return posts.value.filter(post => post.threadId === props.id)
 })
 
-const addPost = () => {
-  const postId = 'ggg' + Math.random()
+const addPost = (eventData) => {
+  console.log(eventData)
   const post = {
-    id: postId,
-    test: newPostText.value,
-    publishedAt: Math.floor(Date.now() / 1000),
-    threadId: props.id,
-    userId: 'rpbB8C6ifrYmNDufMERWfQUoa202'
+    ...eventData.post,
+    threadId: props.id
   }
   posts.value.push(post)
-  thread.value.posts.push(post)
-  newPostText = ''
+  thread.value.posts.push(post.id)
+  newPostText.value = ''
 }
 </script>
 

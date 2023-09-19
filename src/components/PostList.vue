@@ -6,7 +6,7 @@
     >
 
       <div class="user-info">
-        <a href="#" class="user-name">{{userById(post.userId).name}}</a>
+        <a href="#" class="user-name" >{{userById(post.userId).name}}</a>
 
         <a href="#">
           <img :src="userById(post.userId).avatar" alt="" class="avatar-large">
@@ -45,6 +45,7 @@ const props = defineProps({
 const users = ref(sourceData.users)
 
 function userById (userId) {
+  console.log(userId, users.value.find(u => u.id === userId))
   return users.value.find(u => u.id === userId)
 }
 
