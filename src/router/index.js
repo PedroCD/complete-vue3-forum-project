@@ -4,6 +4,7 @@ import ThreadShow from '@/components/pages/ThreadShow.vue'
 import NotFound from '@/components/pages/NotFound.vue'
 import sourceData from '@/data.json'
 import Forum from '@/components/pages/Forum.vue'
+import Category from '@/components/pages/Category.vue'
 
 const routes = [
   {
@@ -35,6 +36,12 @@ const routes = [
     path: '/forum/:id',
     name: 'Forum',
     component: Forum,
+    props: true
+  },
+  {
+    path: '/category/:id',
+    name: 'Category',
+    component: Category,
     props: true
   },
   {
