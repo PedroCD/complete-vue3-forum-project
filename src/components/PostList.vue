@@ -33,7 +33,6 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import sourceData from '@/data.json'
-import AppDate from '@/components/AppDate.vue'
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
