@@ -23,8 +23,8 @@
         </div>
       </div>
 
-      <div class="post-date text-faded">
-        {{post.publishedAt}}
+      <div class="post-date text-faded" :title="humanFriendlyDate(post.publishedAt)">
+        {{diffForHumans(post.publishedAt)}}
       </div>
     </div>
   </div>
@@ -33,6 +33,11 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import sourceData from '@/data.json'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import localizedDate from 'dayjs/plugin/localizedFormat'
+dayjs.extend(relativeTime)
+dayjs.extend(localizedDate)
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -47,6 +52,14 @@ const users = ref(sourceData.users)
 function userById (userId) {
   console.log(userId, users.value.find(u => u.id === userId))
   return users.value.find(u => u.id === userId)
+}
+
+const diffForHumans = (timestamp) => {
+  return dayjs.unix(timestamp).fromNow()
+}
+
+const humanFriendlyDate = (timestamp) => {
+  return dayjs.unix(timestamp).format('llll')
 }
 
 </script>
